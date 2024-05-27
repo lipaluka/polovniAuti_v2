@@ -43,11 +43,13 @@ void dodajAuto() {
 	scanf("%d", &mobil.kilometraza);
 	printf("\nUnesi godiste: ");
 	scanf("%d", &mobil.godiste);
+	printf("\nUnesi cijenu: ");
+	scanf("%d", &mobil.cijena);
 
 	fseek(auti, 0, SEEK_END);
-	fprintf(auti, "%d\n%19s\n%19s\n%14s\n%9s\n%14s\n%14s\n%d\n%d\n%d\n%d\n",
+	fprintf(auti, "%d\n%19s\n%19s\n%14s\n%9s\n%14s\n%14s\n%d\n%d\n%d\n%d\n%d\n",
 		mobil.id, mobil.marka, mobil.model, mobil.karoserija, mobil.pogon,
-		mobil.motor, mobil.boja, mobil.konji, mobil.newtonm, mobil.kilometraza, mobil.godiste);
+		mobil.motor, mobil.boja, mobil.konji, mobil.newtonm, mobil.kilometraza, mobil.godiste, mobil.cijena);
 
 	fclose(auti);
 }
@@ -138,12 +140,13 @@ void urediAuto() {
 		fscanf(auti, "%d", &mobil.newtonm);
 		fscanf(auti, "%d", &mobil.kilometraza);
 		fscanf(auti, "%d", &mobil.godiste);
+		fscanf(auti, "%d", &mobil.cijena);
 		fgetc(auti);
 
 		if (id == idedit) {
 			found = 1;
 			printf("Izaberi polje za uredjivanje:\n");
-			printf("1. Marka\n2. Model\n3. Karoserija\n4. Pogon\n5. Motor\n6. Boja\n7. Konji\n8. Newtonm\n9. Kilometraza\n10. Godiste\n");
+			printf("1. Marka\n2. Model\n3. Karoserija\n4. Pogon\n5. Motor\n6. Boja\n7. Konji\n8. Newtonmetri\n9. Kilometraza\n10. Godiste\n11. Cijena\n");
 			int izborPolja;
 			scanf("%d", &izborPolja);
 			getchar();
@@ -189,15 +192,19 @@ void urediAuto() {
 				printf("Unesi novo godiste: ");
 				scanf("%d", &mobil.godiste);
 				break;
+			case 11:
+				printf("Unesi novu cijenu: ");
+				scanf("%d", &mobil.cijena);
+				break;
 			default:
 				printf("Nepostojeci izbor.\n");
 				break;
 			}
 		}
 
-		fprintf(temp, "%d\n%19s\n%19s\n%14s\n%9s\n%14s\n%14s\n%d\n%d\n%d\n%d\n",
+		fprintf(temp, "%d\n%19s\n%19s\n%14s\n%9s\n%14s\n%14s\n%d\n%d\n%d\n%d\n%d\n",
 			id, mobil.marka, mobil.model, mobil.karoserija, mobil.pogon,
-			mobil.motor, mobil.boja, mobil.konji, mobil.newtonm, mobil.kilometraza, mobil.godiste);
+			mobil.motor, mobil.boja, mobil.konji, mobil.newtonm, mobil.kilometraza, mobil.godiste, mobil.cijena);
 	}
 
 	fclose(auti);

@@ -29,16 +29,16 @@ void sortirajGodisteSilazno(AUTO* mobil, int broj) {
 	qsort(mobil, broj, sizeof(AUTO), usporediGodisteSilazno);
 }
 
-int usporediSnaguUzlazno(const void* a, const void* b) {
-	return ((AUTO*)a)->konji - ((AUTO*)b)->konji;
+int usporediCijenuUzlazno(const void* a, const void* b) {
+	return ((AUTO*)a)->cijena - ((AUTO*)b)->cijena;
 }
-void sortirajSnaguUzlazno(AUTO* mobil, int broj) {
-	qsort(mobil, broj, sizeof(AUTO), usporediSnaguUzlazno);
+void sortirajCijenuUzlazno(AUTO* mobil, int broj) {
+	qsort(mobil, broj, sizeof(AUTO), usporediCijenuUzlazno);
 }
 
-int usporediSnaguSilazno(const void* a, const void* b) {
-	return ((AUTO*)b)->konji - ((AUTO*)a)->konji;
+int usporediCijenuSilazno(const void* a, const void* b) {
+	return ((AUTO*)b)->cijena - ((AUTO*)a)->cijena;
 }
-void sortirajSnaguSilazno(AUTO* mobil, int broj) {
-	qsort(mobil, broj, sizeof(AUTO), usporediSnaguSilazno);
+void sortirajCijenuSilazno(AUTO* mobil, int broj) {
+	qsort(mobil, broj, sizeof(AUTO), usporediCijenuSilazno);
 }

@@ -5,6 +5,8 @@
 #include<time.h>
 #include<conio.h>
 
+#define VAR  12
+
 typedef struct {
 	int id;
 	char marka[20];
@@ -17,7 +19,9 @@ typedef struct {
 	int newtonm;
 	int kilometraza;
 	int godiste;
+	int cijena;
 }AUTO;
+
 
 
 typedef struct {
@@ -45,8 +49,9 @@ int usporediGodisteUzlazno(const void* a, const void* b);
 void sortirajGodisteUzlazno(AUTO* mobil, int broj);
 int usporediGodisteSilazno(const void* a, const void* b);
 void sortirajGodisteSilazno(AUTO* mobil, int broj);
-int usporediSnaguUzlazno(const void* a, const void* b);
-void sortirajSnaguUzlazno(AUTO* mobil, int broj);
-int usporediSnaguSilazno(const void* a, const void* b);
-void sortirajSnaguSilazno(AUTO* mobil, int broj);
+int usporediCijenuUzlazno(const void* a, const void* b);
+void sortirajCijenuUzlazno(AUTO* mobil, int broj);
+int usporediCijenuSilazno(const void* a, const void* b);
+void sortirajCijenuSilazno(AUTO* mobil, int broj);
 void pretragaPoKaroseriji(AUTO* mobil, int broj, const char* karoserija);
+void kupovinaAutomobila();

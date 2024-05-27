@@ -1,3 +1,1 @@
-﻿  izbornikKorisnik.c
-C:\Users\student\source\repos\PolovniAuti\izbornikKorisnik.c(21,25): warning C4098: 'izborKorisnik': 'void' function returning a value
-  PolovniAuti.vcxproj -> C:\Users\student\source\repos\PolovniAuti\Debug\PolovniAuti.exe
+﻿  PolovniAuti.vcxproj -> C:\Users\student\source\repos\PolovniAuti\Debug\PolovniAuti.exe

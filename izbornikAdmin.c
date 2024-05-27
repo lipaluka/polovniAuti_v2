@@ -33,42 +33,46 @@ int izborAdmin() {
 	if (pokusaji < 3) {
 		printf("Uspjesna prijava, dobrodosao %s\n", admin.ime);
 	}
+
 	int izbor;
-		printf("ADMINISTRATORSKI IZBORNIK\n");
-		printf("[1] Dodavanje Automobila\n");
-		printf("[2] Brisanje Automobila\n");
-		printf("[3] Uredjivanje Automobila\n");
-		printf("[4] Izlaz iz Programa\n");
-		scanf("%d", &izbor);
+	printf("ADMINISTRATORSKI IZBORNIK\n");
+	printf("[1] Dodavanje Automobila\n");
+	printf("[2] Brisanje Automobila\n");
+	printf("[3] Uredjivanje Automobila\n");
+	printf("[4] Izlaz iz Programa\n");
+	printf("Unesite vas izbor: ");
+	scanf("%d", &izbor);
 
-		switch (izbor) {
-			FILE* auti = NULL;
-			AUTO mobil = { NULL };
-		case 1:
-			dodajAuto();
-			break;
-		case 2:
-			obrisiAuto();
-			break;
-		case 3:
-			urediAuto();
-			break;
-		case 4:
-			izbor = krajPrograma();
-			if (izbor == 0) {
-				printf("Kraj programa, stisnite bilo koju tipku");
-				_getch();
-			}
-			else {
-				printf("Za povratak na pocetni izbornik pritisnite bilo koju tipku");
-				_getch();
-				izborGlavni();
-			}
-			break;
+	FILE* auti = NULL;
+	AUTO mobil;
 
-		default:
-			printf("Nepostojeci izbor!");
-			break;
-			return 0;
+	switch (izbor) {
+	case 1:
+		dodajAuto();
+		break;
+	case 2:
+		obrisiAuto();
+		break;
+	case 3:
+		urediAuto();
+		break;
+	case 4:
+		if (krajPrograma() == 0) {
+			printf("Kraj programa, stisnite bilo koju tipku\n");
+			getchar(); 
+			getchar(); 
+			exit(0);
 		}
+		else {
+			printf("Za povratak u pocetni izbornik pritisnite bilo koju tipku.");
+			getchar(); 
+			return 0; 
+		}
+	default:
+		printf("Nepostojeci izbor!\n");
+		break;
+	}
+
+	exit(0);
+	return 0;
 }

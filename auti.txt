@@ -1,3 +1,15 @@
+2
+               Audi
+                 A4
+      limuzina
+  prednji
+        2.0TDI
+       srebrna
+204
+410
+240000
+2009
+13500
 1
                Audi
                  A4
@@ -6,39 +18,7 @@
         2.0TDI
        srebrna
 204
-430
-245000
+410
+240000
 2009
-2
-         Volkswagen
-               Golf
-     hatchback
-  prednji
-        1.9TDI
-          Crna
-230
-450
-306000
-2002
-3
-            Hyundai
-             Tucson
-           SUV
-  prednji
-       1.7CRDi
-        smedja
-116
-240
-136000
-2016
-4
-                BMW
-               325i
-          kupe
-   zadnji
-          2.5i
-        crvena
-200
-230
-200000
-1995
+13500

@@ -1,44 +1,58 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include"header.h"
 
+enum Izbor {
+	KORISNIK = 1,
+	ADMINISTRATOR,
+	KRAJ
+};
+
 void izborGlavni() {
 	int izbor;
-	char unos[10];
+	char unos[15];
 
-	do {
+	while (1) {
 		printf("Dobrodosli u aplikaciju!!\n");
 		printf("1. Korisnicki izbornik\n");
 		printf("2. Administratorski izbornik\n");
 		printf("3. IZLAZ IZ PROGRAMA\n");
 		printf("/////////////////////////////////\n");
-		scanf("%9s", unos);
-		if (sscanf(unos, "%d", &izbor) != 1 || izbor < 1 || izbor > 3) {
-			printf("Greska pri unosu!\n");
+		scanf("%14s", unos);
+
+		if (strcmp(unos, "korisnik") == 0)
+			izbor = KORISNIK;
+		else if (strcmp(unos, "admin") == 0)
+			izbor = ADMINISTRATOR;
+		else if (strcmp(unos, "kraj") == 0)
+			izbor = KRAJ;
+		else {
+			printf("Nepostojeci izbor\n");
 			continue;
 		}
+
 		switch (izbor) {
-		case 1:
+		case KORISNIK:
 			izborKorisnik();
 			break;
-		case 2:
+		case ADMINISTRATOR:
 			izborAdmin();
 			break;
-		case 3:
+		case KRAJ:
 			if (krajPrograma() == 0) {
-				printf("Kraj programa, stisnite bilo koju tipku");
+				printf("Kraj programa, stisnite bilo koju tipku\n");
 				getchar();
 				getchar();
+				return;
 			}
 			else {
-				printf("Za povratak na pocetni izbornik pritisnite bilo koju tipku");
+				printf("Za povratak na pocetni izbornik pritisnite bilo koju tipku\n");
 				getchar();
 				getchar();
-				izborGlavni();
 			}
 			break;
 		default:
 			printf("Nepostojeci izbor\n");
 			break;
 		}
-	} while (izbor != 3);
+	}
 }

@@ -22,6 +22,7 @@ void pregledAutomobila() {
 		fscanf(auti, "%d", &mobil.newtonm);
 		fscanf(auti, "%d", &mobil.kilometraza);
 		fscanf(auti, "%d", &mobil.godiste);
+		fscanf(auti, "%d", &mobil.cijena);
 
 		printf("ID: %d\n", mobil.id);
 		printf("Marka: %s\n", mobil.marka);
@@ -34,6 +35,7 @@ void pregledAutomobila() {
 		printf("Newton-metri: %d\n", mobil.newtonm);
 		printf("Kilometraza: %d\n", mobil.kilometraza);
 		printf("Godiste: %d\n", mobil.godiste);
+		printf("Cijena: %d(EUR)\n", mobil.cijena);
 		printf("---------------------------------\n");
 	}
 
@@ -74,14 +76,15 @@ void pretraziAute() {
 			fscanf(auti, "%d", &mobil.newtonm);
 			fscanf(auti, "%d", &mobil.kilometraza);
 			fscanf(auti, "%d", &mobil.godiste);
+			fscanf(auti, "%d", &mobil.cijena);
 			fgetc(auti);
 
 			if (mobil.id == id) {
 				found = 1;
 				printf("Automobil pronadjen:\n");
-				printf("ID: %d\nMarka: %s\nModel: %s\nKaroserija: %s\nPogon: %s\nMotor: %s\nBoja: %s\nKonji: %d\nNewtonm: %d\nKilometraza: %d\nGodiste: %d\n",
+				printf("ID: %d\nMarka: %s\nModel: %s\nKaroserija: %s\nPogon: %s\nMotor: %s\nBoja: %s\nKonji: %d\nNewtonm: %d\nKilometraza: %d\nGodiste: %d\nCijena: %d(EUR)\n",
 					mobil.id, mobil.marka, mobil.model, mobil.karoserija, mobil.pogon,
-					mobil.motor, mobil.boja, mobil.konji, mobil.newtonm, mobil.kilometraza, mobil.godiste);
+					mobil.motor, mobil.boja, mobil.konji, mobil.newtonm, mobil.kilometraza, mobil.godiste, mobil.cijena);
 				break;
 			}
 		}
@@ -105,14 +108,15 @@ void pretraziAute() {
 			fscanf(auti, "%d", &mobil.newtonm);
 			fscanf(auti, "%d", &mobil.kilometraza);
 			fscanf(auti, "%d", &mobil.godiste);
+			fscanf(auti, "%d", &mobil.cijena);
 			fgetc(auti);
 
 			if (strcmp(mobil.marka, marka) == 0) {
 				found = 1;
 				printf("Automobil pronadjen:\n");
-				printf("ID: %d\nMarka: %s\nModel: %s\nKaroserija: %s\nPogon: %s\nMotor: %s\nBoja: %s\nKonji: %d\nNewtonm: %d\nKilometraza: %d\nGodiste: %d\n",
+				printf("ID: %d\nMarka: %s\nModel: %s\nKaroserija: %s\nPogon: %s\nMotor: %s\nBoja: %s\nKonji: %d\nNewtonm: %d\nKilometraza: %d\nGodiste: %d\nCijena: %d(EUR)\n",
 					mobil.id, mobil.marka, mobil.model, mobil.karoserija, mobil.pogon,
-					mobil.motor, mobil.boja, mobil.konji, mobil.newtonm, mobil.kilometraza, mobil.godiste);
+					mobil.motor, mobil.boja, mobil.konji, mobil.newtonm, mobil.kilometraza, mobil.godiste, mobil.cijena);
 			}
 		}
 		if (!found) {
@@ -132,10 +136,10 @@ void pretragaPoKaroseriji(AUTO* mobil, int broj, const char* karoserija) {
 	int found = 0;
 	for (int i = 0; i < broj; i++) {
 		if (strcmp(mobil[i].karoserija, karoserija) == 0) {
-			printf("ID: %d\nMarka: %s\nModel: %s\nKaroserija: %s\nPogon: %s\nMotor: %s\nBoja: %s\nKonji: %d\nNewtonm: %d\nKilometraza: %d\nGodiste: %d\n\n",
+			printf("ID: %d\nMarka: %s\nModel: %s\nKaroserija: %s\nPogon: %s\nMotor: %s\nBoja: %s\nKonji: %d\nNewtonm: %d\nKilometraza: %d\nGodiste: %d\nCijena: %d(EUR)\n\n",
 				mobil[i].id, mobil[i].marka, mobil[i].model, mobil[i].karoserija,
 				mobil[i].pogon, mobil[i].motor, mobil[i].boja, mobil[i].konji,
-				mobil[i].newtonm, mobil[i].kilometraza, mobil[i].godiste);
+				mobil[i].newtonm, mobil[i].kilometraza, mobil[i].godiste, mobil[i].cijena);
 			found = 1;
 		}
 	}
@@ -143,5 +147,76 @@ void pretragaPoKaroseriji(AUTO* mobil, int broj, const char* karoserija) {
 		printf("Nema automobila sa karoserijom: %s\n", karoserija);
 	}
 }
+
+void kupovinaAutomobila() {
+	AUTO* mobil;
+	int broj;
+
+	scanAuto(&mobil, &broj);
+	pretraziAute(mobil, broj);
+
+	printf("Unesi ID automobila koji zelite kupiti: ");
+	int kupovinaID;
+	scanf("%d", &kupovinaID);
+	getchar();
+
+	int found = 0;
+	AUTO kupljenAuto;
+	FILE* auti = fopen("auti.txt", "r");
+	FILE* temp = fopen("temp.txt", "w");
+
+	if (auti == NULL || temp == NULL) {
+		perror("Greska pri otvaranju datoteke");
+		free(mobil);
+		return;
+	}
+
+	while (fscanf(auti, "%d\n%19s\n%19s\n%14s\n%9s\n%14s\n%14s\n%d\n%d\n%d\n%d\n%d\n",
+		&kupljenAuto.id, kupljenAuto.marka, kupljenAuto.model, kupljenAuto.karoserija,
+		kupljenAuto.pogon, kupljenAuto.motor, kupljenAuto.boja, &kupljenAuto.konji,
+		&kupljenAuto.newtonm, &kupljenAuto.kilometraza, &kupljenAuto.godiste, &kupljenAuto.cijena) == VAR) {
+
+		if (kupljenAuto.id == kupovinaID) {
+			found = 1;
+			printf("Jeste li sigurni da zelite kupiti automobil (ID %d)? (da/ne): ", kupovinaID);
+			char potvrda[3];
+			scanf("%2s", potvrda);
+
+			if (strcmp(potvrda, "da") == 0) {
+				printf("Automobil sa ID %d je kupljen.\n", kupovinaID);
+				continue;
+			}
+		}
+
+		fprintf(temp, "%d\n%19s\n%19s\n%14s\n%9s\n%14s\n%14s\n%d\n%d\n%d\n%d\n%d\n",
+			kupljenAuto.id, kupljenAuto.marka, kupljenAuto.model, kupljenAuto.karoserija,
+			kupljenAuto.pogon, kupljenAuto.motor, kupljenAuto.boja, kupljenAuto.konji,
+			kupljenAuto.newtonm, kupljenAuto.kilometraza, kupljenAuto.godiste, kupljenAuto.cijena);
+
+		
+		if (found && kupljenAuto.id != kupovinaID) {
+			kupljenAuto.id--; 
+			fprintf(temp, "%d\n%19s\n%19s\n%14s\n%9s\n%14s\n%14s\n%d\n%d\n%d\n%d\n%d\n",
+				kupljenAuto.id, kupljenAuto.marka, kupljenAuto.model, kupljenAuto.karoserija,
+				kupljenAuto.pogon, kupljenAuto.motor, kupljenAuto.boja, kupljenAuto.konji,
+				kupljenAuto.newtonm, kupljenAuto.kilometraza, kupljenAuto.godiste, kupljenAuto.cijena);
+		}
+	}
+
+	fclose(auti);
+	fclose(temp);
+
+	if (found) {
+		remove("auti.txt");
+		rename("temp.txt", "auti.txt");
+	}
+	else {
+		remove("temp.txt");
+		printf("Automobil sa ID %d nije pronadjen.\n", kupovinaID);
+	}
+
+	free(mobil);
+}
+
 
 

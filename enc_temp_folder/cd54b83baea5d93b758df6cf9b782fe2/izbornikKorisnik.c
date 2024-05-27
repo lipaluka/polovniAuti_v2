@@ -18,7 +18,7 @@ enum IzborKorisnik {
 
 
 void izborKorisnik() {
-	enum IzborKorisnik izbor;
+	int izbor;
 	printf("!Korisnicki Izbornik!\n");
 	printf("[1] Pregled svih automobila\n");
 	printf("[2] Pretrazivanje automobila\n");
