@@ -19,6 +19,7 @@ enum IzborKorisnik {
 
 void izborKorisnik() {
 	enum IzborKorisnik izbor;
+	char unos[15];
 	printf("!Korisnicki Izbornik!\n");
 	printf("[1] Pregled svih automobila\n");
 	printf("[2] Pretrazivanje automobila\n");
@@ -33,10 +34,35 @@ void izborKorisnik() {
 	printf("[11] Izlaz iz programa\n");
 	printf("/////////////////////////////////\n");
 	printf("Unesite vas izbor: ");
-	scanf("%d", &izbor);
-	if (strcmp(izbor, "pregled") == 0)
+	scanf("%14s", unos);
+	if (strcmp(unos, "pregled") == 0)
 		izbor = PREGLED;
-	
+	else if (strcmp(unos, "pretraga") == 0)
+		izbor = PRETRAGA;
+	else if (strcmp(unos, "kmu") == 0)
+		izbor = KMU;
+	else if (strcmp(unos, "kms") == 0)
+		izbor = KMS;
+	else if (strcmp(unos, "godu") == 0)
+		izbor = GODU;
+	else if (strcmp(unos, "gods") == 0)
+		izbor = GODS;
+	else if (strcmp(unos, "ciju") == 0)
+		izbor = CIJU;
+	else if (strcmp(unos, "cijs") == 0)
+		izbor = CIJS;
+	else if (strcmp(unos, "karoserija") == 0)
+		izbor = KAROSERIJA;
+	else if (strcmp(unos, "kupovina") == 0)
+		izbor = KUPOVINA;
+	else if (strcmp(unos, "izlaz") == 0)
+		izbor = IZLAZ;
+	else {
+		printf("Krivi unos!!");
+		return;
+	}
+
+
 	FILE* auti = NULL;
 	AUTO* mobil = NULL;
 	int broj;
@@ -52,7 +78,7 @@ void izborKorisnik() {
 		pregledAutomobila();
 		fclose(auti);
 		break;
-	case 2:
+	case PRETRAGA:
 		auti = fopen("auti.txt", "r");
 		if (auti == NULL) {
 			perror("Greska pri otvaranju datoteke");
@@ -61,49 +87,49 @@ void izborKorisnik() {
 		pretraziAute();
 		fclose(auti);
 		break;
-	case 3:
+	case KMU:
 		scanAuto(&mobil, &broj);
 		printf("Automobili sortirani po kilometrazi (UZLAZNO)\n");
 		sortirajKilometrazaUzlazno(mobil, broj);
 		printAuto(mobil, broj);
 		free(mobil);
 		break;
-	case 4:
+	case KMS:
 		scanAuto(&mobil, &broj);
 		printf("Automobili sortirani po kilometrazi (SILAZNO)\n");
 		sortirajKilometrazuSilazno(mobil, broj);
 		printAuto(mobil, broj);
 		free(mobil);
 		break;
-	case 5:
+	case GODU:
 		scanAuto(&mobil, &broj);
 		printf("Automobili sortirani po godistu (UZLAZNO)\n");
 		sortirajGodisteUzlazno(mobil, broj);
 		printAuto(mobil, broj);
 		free(mobil);
 		break;
-	case 6:
+	case GODS:
 		scanAuto(&mobil, &broj);
 		printf("Automobili sortirani po godistu (SILAZNO)\n");
 		sortirajGodisteSilazno(mobil, broj);
 		printAuto(mobil, broj);
 		free(mobil);
 		break;
-	case 7:
+	case CIJU:
 		scanAuto(&mobil, &broj);
 		printf("Automobili sortirani po cijeni (UZLAZNO)\n");
 		sortirajCijenuUzlazno(mobil, broj);
 		printAuto(mobil, broj);
 		free(mobil);
 		break;
-	case 8:
+	case CIJS:
 		scanAuto(&mobil, &broj);
 		printf("Automobili sortirani po cijeni (SILAZNO)\n");
 		sortirajCijenuSilazno(mobil, broj);
 		printAuto(mobil, broj);
 		free(mobil);
 		break;
-	case 9:
+	case KAROSERIJA:
 		scanAuto(&mobil, &broj);
 		printf("Unesi karoseriju koju zelis pretraziti: ");
 		scanf("%14s", karoserija);
@@ -111,25 +137,25 @@ void izborKorisnik() {
 		pretragaPoKaroseriji(mobil, broj, karoserija);
 		free(mobil);
 		break;
-	case 10:
+	case KUPOVINA:
 		kupovinaAutomobila();
 		break;
-	case 11:
+	case IZLAZ:
 		if (krajPrograma() == 0) {
 			printf("Kraj programa, stisnite bilo koju tipku\n");
-			getchar(); 
-			getchar(); 
-			exit(0); 
+			getchar();
+			getchar();
+			exit(0);
 		}
 		else {
 			printf("Za povratak na pocetni izbornik pritisnite bilo koju tipku\n");
-			getchar(); 
-			getchar(); 
-			return; 
+			getchar();
+			getchar();
+			return;
 		}
 	default:
-		printf("Krivi broj unesen!\n");
-		return; 
+		printf("Krivi unos!\n");
+		return;
 	}
 	exit(0);
 }

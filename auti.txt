@@ -1,24 +1,48 @@
-2
-               Audi
-                 A4
-      limuzina
-  prednji
-        2.0TDI
-       srebrna
-204
-410
-240000
-2009
-13500
 1
-               Audi
-                 A4
+         Volkswagen
+             Passat
       limuzina
   prednji
-        2.0TDI
-       srebrna
-204
-410
-240000
+        1.6TDI
+          siva
+150
+320
+45000
+2012
+15000
+2
+                BMW
+               335d
+      limuzina
+   zadnji
+          3.0d
+        crvena
+286
+580
+350000
 2009
-13500
+10800
+3
+                BMW
+               330d
+      limuzina
+   zadnji
+          3.0d
+       srebrna
+201
+440
+420000
+2002
+3800
+4
+                BMW
+              328xi
+      limuzina
+      4x4
+          2.0i
+        crvena
+240
+250
+194000
+2013
+14000

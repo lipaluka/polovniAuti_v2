@@ -4,7 +4,8 @@
 #include<math.h>
 #include<time.h>
 #include<conio.h>
-
+#include<ctype.h>
+//5,8,12,13,14,19,20,22,24
 #define VAR  12
 
 typedef struct {

@@ -15,8 +15,15 @@ int adminPrijava(ADMIN* admin) {
 		return 0;
 	}
 }
+enum IzborAdmin {
+	DODAVANJE = 1,
+	BRISANJE,
+	UREDI,
+	IZLAZ
+};
 
 int izborAdmin() {
+	enum IzborAdmin izbor;
 	srand((unsigned)time(NULL));
 	size_t pokusaji = 0;
 	ADMIN admin = { "Luka2502", "123321" };
@@ -34,39 +41,52 @@ int izborAdmin() {
 		printf("Uspjesna prijava, dobrodosao %s\n", admin.ime);
 	}
 
-	int izbor;
+	char unos[15];
 	printf("ADMINISTRATORSKI IZBORNIK\n");
 	printf("[1] Dodavanje Automobila\n");
 	printf("[2] Brisanje Automobila\n");
 	printf("[3] Uredjivanje Automobila\n");
 	printf("[4] Izlaz iz Programa\n");
 	printf("Unesite vas izbor: ");
-	scanf("%d", &izbor);
+	scanf("%14s", unos);
 
 	FILE* auti = NULL;
 	AUTO mobil;
 
+	if (strcmp(unos, "dodaj") == 0)
+		izbor = DODAVANJE;
+	else if (strcmp(unos, "brisi") == 0)
+		izbor = BRISANJE;
+	else if (strcmp(unos, "uredi") == 0)
+		izbor = UREDI;
+	else if (strcmp(unos, "izlaz") == 0)
+		izbor = IZLAZ;
+	else {
+		printf("Krivi unos!!");
+		return;
+	}
+
 	switch (izbor) {
-	case 1:
+	case DODAVANJE:
 		dodajAuto();
 		break;
-	case 2:
+	case BRISANJE:
 		obrisiAuto();
 		break;
-	case 3:
+	case UREDI:
 		urediAuto();
 		break;
-	case 4:
+	case IZLAZ:
 		if (krajPrograma() == 0) {
 			printf("Kraj programa, stisnite bilo koju tipku\n");
-			getchar(); 
-			getchar(); 
+			getchar();
+			getchar();
 			exit(0);
 		}
 		else {
 			printf("Za povratak u pocetni izbornik pritisnite bilo koju tipku.");
-			getchar(); 
-			return 0; 
+			getchar();
+			return 0;
 		}
 	default:
 		printf("Nepostojeci izbor!\n");

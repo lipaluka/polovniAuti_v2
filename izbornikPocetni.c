@@ -8,7 +8,7 @@ enum Izbor {
 };
 
 void izborGlavni() {
-	int izbor;
+	enum Izbor izbor;
 	char unos[15];
 
 	while (1) {

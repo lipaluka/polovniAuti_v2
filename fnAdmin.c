@@ -9,19 +9,17 @@ void dodajAuto() {
 	}
 
 	AUTO mobil;
-	int noviID = 0;
 	int trenutniID;
 
-	while (fscanf(auti, "%d", &trenutniID) == 1) {
-		if (trenutniID > noviID) {
-			noviID = trenutniID;
-		}
+	static int maxID = 0;
+	while (fscanf(auti, "%d", &trenutniID) != 0) {
+		maxID = trenutniID; 
 
 		char buffer[256];
 		fgets(buffer, sizeof(buffer), auti);
 	}
 
-	mobil.id = noviID + 1;
+	mobil.id = maxID + 1;
 
 	printf("\nUnesi marku: ");
 	scanf("%19s", mobil.marka);
@@ -45,6 +43,52 @@ void dodajAuto() {
 	scanf("%d", &mobil.godiste);
 	printf("\nUnesi cijenu: ");
 	scanf("%d", &mobil.cijena);
+
+	for (int i = 0; mobil.marka[i] != '\0'; i++) {
+		if (isspace(mobil.marka[i])) {
+			printf("Neispravan unos! Marka ne smije sadržavati razmake.\n");
+			fclose(auti);
+			return;
+		}
+	}
+
+	for (int i = 0; mobil.model[i] != '\0'; i++) {
+		if (isspace(mobil.model[i])) {
+			printf("Neispravan unos! Model ne smije sadržavati razmake.\n");
+			fclose(auti);
+			return;
+		}
+	}
+	
+	if (mobil.konji < 0 || mobil.konji>4000 || mobil.newtonm < 0 || mobil.newtonm>4000 || mobil.kilometraza < 0 || mobil.cijena < 0 || mobil.godiste < 1800 || mobil.godiste > 2025) {
+		printf("Neispravan unos! Provjerite unesene vrijednosti.\n");
+		fclose(auti);
+		return;
+	}
+
+	for (int i = 0; i < strlen(mobil.karoserija); i++) {
+		mobil.karoserija[i] = tolower(mobil.karoserija[i]);
+	}
+	for (int i = 0; i < strlen(mobil.pogon); i++) {
+		mobil.pogon[i] = tolower(mobil.pogon[i]);
+	}
+
+	if (strcmp(mobil.karoserija, "limuzina") != 0 && strcmp(mobil.karoserija, "hatchback") != 0 &&
+		strcmp(mobil.karoserija, "coupe") != 0 && strcmp(mobil.karoserija, "kabrio") != 0 &&
+		strcmp(mobil.karoserija, "suv") != 0 && strcmp(mobil.karoserija, "crossover") != 0 &&
+		strcmp(mobil.karoserija, "hyper") != 0 && strcmp(mobil.karoserija, "monovolumen") != 0 &&
+		strcmp(mobil.karoserija, "ostalo") != 0) {
+		printf("Neispravan unos za karoseriju!\n");
+		fclose(auti);
+		return;
+	}
+
+	if (strcmp(mobil.pogon, "prednji") != 0 && strcmp(mobil.pogon, "zadnji") != 0 && strcmp(mobil.pogon, "4x4") != 0) {
+		printf("Neispravan unos za pogon!\n");
+		fclose(auti);
+		return;
+	}
+
 
 	fseek(auti, 0, SEEK_END);
 	fprintf(auti, "%d\n%19s\n%19s\n%14s\n%9s\n%14s\n%14s\n%d\n%d\n%d\n%d\n%d\n",
@@ -126,7 +170,7 @@ void urediAuto() {
 
 	AUTO mobil;
 	int id;
-	int found = 0;
+	int found;
 
 	while (fscanf(auti, "%d", &id) == 1) {
 		fgetc(auti);
@@ -163,10 +207,32 @@ void urediAuto() {
 			case 3:
 				printf("Unesi novu karoseriju: ");
 				scanf("%14s", mobil.karoserija);
-				break;
+
+				for (int i = 0; i < strlen(mobil.karoserija); i++) {
+					mobil.karoserija[i] = tolower(mobil.karoserija[i]);
+
+					if (strcmp(mobil.karoserija, "limuzina") != 0 && strcmp(mobil.karoserija, "hatchback") != 0 &&
+						strcmp(mobil.karoserija, "coupe") != 0 && strcmp(mobil.karoserija, "kabrio") != 0 &&
+						strcmp(mobil.karoserija, "suv") != 0 && strcmp(mobil.karoserija, "crossover") != 0 &&
+						strcmp(mobil.karoserija, "hyper") != 0 && strcmp(mobil.karoserija, "monovolumen") != 0 &&
+						strcmp(mobil.karoserija, "ostalo") != 0) {
+						printf("Neispravan unos za karoseriju!\n");
+						fclose(auti);
+						return;
+						break;
 			case 4:
 				printf("Unesi novi pogon: ");
 				scanf("%9s", mobil.pogon);
+
+				for (int i = 0; i < strlen(mobil.pogon); i++) {
+					mobil.pogon[i] = tolower(mobil.pogon[i]);
+				}
+
+				if (strcmp(mobil.pogon, "prednji") != 0 && strcmp(mobil.pogon, "zadnji") != 0 && strcmp(mobil.pogon, "4x4") != 0) {
+					printf("Neispravan unos za pogon!\n");
+					fclose(auti);
+					return;
+				}
 				break;
 			case 5:
 				printf("Unesi novi motor: ");
@@ -199,24 +265,26 @@ void urediAuto() {
 			default:
 				printf("Nepostojeci izbor.\n");
 				break;
+					}
+				}
+
+				fprintf(temp, "%d\n%19s\n%19s\n%14s\n%9s\n%14s\n%14s\n%d\n%d\n%d\n%d\n%d\n",
+					id, mobil.marka, mobil.model, mobil.karoserija, mobil.pogon,
+					mobil.motor, mobil.boja, mobil.konji, mobil.newtonm, mobil.kilometraza, mobil.godiste, mobil.cijena);
+			}
+
+			fclose(auti);
+			fclose(temp);
+
+			if (found) {
+				remove("auti.txt");
+				rename("temp.txt", "auti.txt");
+				printf("Automobil sa ID %d je uredjen.\n", idedit);
+			}
+			else {
+				remove("temp.txt");
+				printf("Automobil sa ID %d nije pronadjen.\n", idedit);
 			}
 		}
-
-		fprintf(temp, "%d\n%19s\n%19s\n%14s\n%9s\n%14s\n%14s\n%d\n%d\n%d\n%d\n%d\n",
-			id, mobil.marka, mobil.model, mobil.karoserija, mobil.pogon,
-			mobil.motor, mobil.boja, mobil.konji, mobil.newtonm, mobil.kilometraza, mobil.godiste, mobil.cijena);
-	}
-
-	fclose(auti);
-	fclose(temp);
-
-	if (found) {
-		remove("auti.txt");
-		rename("temp.txt", "auti.txt");
-		printf("Automobil sa ID %d je uredjen.\n", idedit);
-	}
-	else {
-		remove("temp.txt");
-		printf("Automobil sa ID %d nije pronadjen.\n", idedit);
 	}
 }
