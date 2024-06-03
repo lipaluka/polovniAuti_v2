@@ -19,19 +19,19 @@ int krajPrograma() {
 	}
 	return kraj;
 }
-
+int var = 12;
 void scanAuto(AUTO** mobil, int* broj) {
 	FILE* auti = fopen("auti.txt", "r");
 	if (auti == NULL) {
 		perror("Greska pri otvaranju datoteke");
 		return;
 	}
-
+	
 	AUTO temp;
 	*broj = 0;
 	while (fscanf(auti, "%d\n%19s\n%19s\n%14s\n%9s\n%14s\n%14s\n%d\n%d\n%d\n%d\n%d\n",
 		&temp.id, temp.marka, temp.model, temp.karoserija, temp.pogon,
-		temp.motor, temp.boja, &temp.konji, &temp.newtonm, &temp.kilometraza, &temp.godiste, &temp.cijena) == VAR) {
+		temp.motor, temp.boja, &temp.konji, &temp.newtonm, &temp.kilometraza, &temp.godiste, &temp.cijena) == var) {
 		(*broj)++;
 	}
 	rewind(auti);

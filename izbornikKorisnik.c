@@ -59,7 +59,7 @@ void izborKorisnik() {
 		izbor = IZLAZ;
 	else {
 		printf("Krivi unos!!");
-		return;
+		return izborKorisnik();
 	}
 
 

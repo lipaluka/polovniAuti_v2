@@ -1,48 +1,48 @@
 1
-         Volkswagen
-             Passat
-      limuzina
+            Hyundai
+             Tucson
+           suv
   prednji
-        1.6TDI
-          siva
-150
-320
-45000
-2012
-15000
+       1.7CRDi
+        smedja
+116
+240
+136500
+2016
+16000
 2
                 BMW
-               335d
-      limuzina
-   zadnji
+                 X6
+           suv
+      4x4
           3.0d
         crvena
-286
-580
-350000
-2009
-10800
+300
+550
+260000
+2011
+14000
 3
-                BMW
-               330d
-      limuzina
-   zadnji
-          3.0d
-       srebrna
-201
-440
-420000
-2002
-3800
-4
-                BMW
-              328xi
+               Audi
+                 A6
       limuzina
       4x4
-          2.0i
-        crvena
-240
-250
-194000
-2013
-14000
+        3.0TDI
+          siva
+280
+600
+230000
+2014
+15000
+4
+            Peugeot
+                206
+     hatchback
+  prednji
+          1.4i
+          siva
+80
+75
+321000
+2006
+750

@@ -149,6 +149,7 @@ void pretragaPoKaroseriji(AUTO* mobil, int broj, const char* karoserija) {
 }
 
 void kupovinaAutomobila() {
+	extern int var;
 	AUTO* mobil;
 	int broj;
 
@@ -174,7 +175,7 @@ void kupovinaAutomobila() {
 	while (fscanf(auti, "%d\n%19s\n%19s\n%14s\n%9s\n%14s\n%14s\n%d\n%d\n%d\n%d\n%d\n",
 		&kupljenAuto.id, kupljenAuto.marka, kupljenAuto.model, kupljenAuto.karoserija,
 		kupljenAuto.pogon, kupljenAuto.motor, kupljenAuto.boja, &kupljenAuto.konji,
-		&kupljenAuto.newtonm, &kupljenAuto.kilometraza, &kupljenAuto.godiste, &kupljenAuto.cijena) == VAR) {
+		&kupljenAuto.newtonm, &kupljenAuto.kilometraza, &kupljenAuto.godiste, &kupljenAuto.cijena) == var) {
 
 		if (kupljenAuto.id == kupovinaID) {
 			found = 1;

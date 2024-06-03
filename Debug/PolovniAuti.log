@@ -1,20 +1,14 @@
 ﻿  fnAdmin.c
-C:\Users\student\source\repos\PolovniAuti\fnAdmin.c(69,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\student\source\repos\PolovniAuti\fnAdmin.c(72,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\student\source\repos\PolovniAuti\fnAdmin.c(114,11): warning C4098: 'obrisiAuto': 'void' function returning a value
-C:\Users\student\source\repos\PolovniAuti\fnAdmin.c(121,11): warning C4098: 'obrisiAuto': 'void' function returning a value
-C:\Users\student\source\repos\PolovniAuti\fnAdmin.c(211,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\student\source\repos\PolovniAuti\fnAdmin.c(143,11): warning C4098: 'obrisiAuto': 'void' function returning a value
   fnKorisnik.c
   fnSort.c
   funkcije.c
   izbornikAdmin.c
-C:\Users\student\source\repos\PolovniAuti\fnAdmin.c(227,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\student\source\repos\PolovniAuti\izbornikAdmin.c(66,9): warning C4033: 'izborAdmin' must return a value
+C:\Users\student\source\repos\PolovniAuti\fnAdmin.c(150,11): warning C4098: 'obrisiAuto': 'void' function returning a value
   izbornikKorisnik.c
+C:\Users\student\source\repos\PolovniAuti\izbornikAdmin.c(54,7): warning C4101: 'mobil': unreferenced local variable
   izbornikPocetni.c
   main.c
   Generating Code...
-C:\Users\student\source\repos\PolovniAuti\izbornikAdmin.c(54,7): warning C4101: 'mobil': unreferenced local variable
-C:\Users\student\source\repos\PolovniAuti\izbornikAdmin.c(98): warning C4715: 'izborAdmin': not all control paths return a value
-fnAdmin.obj : error LNK2001: unresolved external symbol _found
-C:\Users\student\source\repos\PolovniAuti\Debug\PolovniAuti.exe : fatal error LNK1120: 1 unresolved externals
+C:\Users\student\source\repos\PolovniAuti\izbornikKorisnik.c(62,25): warning C4098: 'izborKorisnik': 'void' function returning a value
+  PolovniAuti.vcxproj -> C:\Users\student\source\repos\PolovniAuti\Debug\PolovniAuti.exe

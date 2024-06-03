@@ -63,7 +63,7 @@ int izborAdmin() {
 		izbor = IZLAZ;
 	else {
 		printf("Krivi unos!!");
-		return;
+		return izborAdmin();
 	}
 
 	switch (izbor) {
